@@ -37,3 +37,5 @@ Route::post('/deleteItem/{id}',[ItemController::class, 'destroyItem']);
 
 
 Route::get('/getAllCategories/{id?}',[CategoryController::class, 'getAllCategories']);
+Route::post('/addCategory',[CategoryController::class, 'addCategory']);
+Route::post('/updateCategory/{id}',[CategoryController::class, 'updateCategory']);

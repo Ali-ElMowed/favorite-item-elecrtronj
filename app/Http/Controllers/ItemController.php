@@ -46,7 +46,7 @@ class ItemController extends Controller
         ], 200);
         }else{
             return response()->json([
-                "status" => "No resturant found"
+                "status" => "No item found"
             ], 404);
         }
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use ResourceBundle;
 
 class CategoryController extends Controller
 {
@@ -20,5 +21,36 @@ class CategoryController extends Controller
             "status" => "Success",
             "categories" => $categories
         ], 200);
+    }
+
+    public function addCategory(Request $request){
+
+        $category = new Category;
+
+        $category -> cat_name = $request -> cat_name;
+        $category -> save();
+
+        return response() -> json([
+            'status'=>'success'
+        ],200);
+    }
+
+    public Function updateCategory(Request $request, $id){
+
+        $category = Category::find($id);
+        if($category){
+
+            $category -> cat_name = $request -> cat_name;
+            $category->update();
+
+            return response()->json([
+                'status'=>'Updated succesfully',
+            ],200);
+        }else{
+            return response()->json([
+                'status'=>"No restaurants in this name"
+            ],200);
+        }
+
     }
 }
