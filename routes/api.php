@@ -29,3 +29,4 @@ Route::group(['middleware' => 'api'], function($router) {
 });
 Route::get('/getAllItems',[ItemController::class, 'getAllItems']);
 Route::post('/addItem',[ItemController::class, 'addItem']);
+Route::post('/updateItem/{id}',[ItemController::class, 'updateItem']);

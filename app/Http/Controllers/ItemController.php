@@ -32,4 +32,23 @@ class ItemController extends Controller
         ], 200);
     }
 
+    public function updateItem(Request $request = null, $id)
+    {
+        $item = Item::find($id);
+
+        if ($item) {
+
+            $item->item_name = $request->item_name;
+            $item->update();
+
+            return response()->json([
+            "status" => "success"
+        ], 200);
+        }else{
+            return response()->json([
+                "status" => "No resturant found"
+            ], 404);
+        }
+    }
+
 }
