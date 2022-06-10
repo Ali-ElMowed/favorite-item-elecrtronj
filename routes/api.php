@@ -27,6 +27,9 @@ Route::group(['middleware' => 'api'], function($router) {
     Route::post('/refresh', [JWTController::class, 'refresh']);
     Route::post('/profile', [JWTController::class, 'profile']);
 });
+
+
 Route::get('/getAllItems',[ItemController::class, 'getAllItems']);
 Route::post('/addItem',[ItemController::class, 'addItem']);
 Route::post('/updateItem/{id}',[ItemController::class, 'updateItem']);
+Route::post('/deleteItem/{id}',[ItemController::class, 'destroyItem']);

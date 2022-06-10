@@ -51,4 +51,24 @@ class ItemController extends Controller
         }
     }
 
+    public function destroyItem($id){
+
+        $item = Item::find($id);
+
+        if($item){
+
+            $item->delete();
+            return response()->json([
+                'status'=> 'deleted'
+            ],200);
+
+        }else{
+
+            return response()->json([
+                'status'=>"No  item found"
+            ],404);
+
+        }
+    }
+
 }
