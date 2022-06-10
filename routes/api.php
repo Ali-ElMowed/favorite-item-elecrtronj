@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
@@ -29,7 +30,10 @@ Route::group(['middleware' => 'api'], function($router) {
 });
 
 
-Route::get('/getAllItems',[ItemController::class, 'getAllItems']);
+Route::get('/getAllItems/{id?}',[ItemController::class, 'getAllItems']);
 Route::post('/addItem',[ItemController::class, 'addItem']);
 Route::post('/updateItem/{id}',[ItemController::class, 'updateItem']);
 Route::post('/deleteItem/{id}',[ItemController::class, 'destroyItem']);
+
+
+Route::get('/getAllCategories/{id?}',[CategoryController::class, 'getAllCategories']);
