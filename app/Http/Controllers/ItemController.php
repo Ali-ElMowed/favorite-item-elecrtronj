@@ -21,5 +21,15 @@ class ItemController extends Controller
         ], 200);
     }
 
+    public function addItem(Request $request)
+    {
+        $item = new Item;
+        $item->item_name = $request->item_name;
+        $item->save();
+
+        return response()->json([
+            "status" => "success"
+        ], 200);
+    }
 
 }
