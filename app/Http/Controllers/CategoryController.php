@@ -35,7 +35,7 @@ class CategoryController extends Controller
         ],200);
     }
 
-    public Function updateCategory(Request $request, $id){
+    public function updateCategory(Request $request, $id){
 
         $category = Category::find($id);
         if($category){
@@ -48,9 +48,26 @@ class CategoryController extends Controller
             ],200);
         }else{
             return response()->json([
-                'status'=>"No restaurants in this name"
+                'status'=>"Not found"
             ],200);
         }
+    }
 
+    public function destroyCategory($id){
+
+        $category = Category::find($id);
+
+        if($category){
+
+            $category->delete();
+
+            return response()->json([
+                'status'=>"Category Deleted"
+            ],200);
+        }else{
+            return response()->json([
+                'status'=>'Not found'
+            ],200);
+        }
     }
 }
