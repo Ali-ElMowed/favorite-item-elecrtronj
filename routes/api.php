@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     });
 
     Route::get('/getAllItems/{id?}',[ItemController::class, 'getAllItems']);
+    Route::get('/getFavorites',[UserController::class, 'getFavorites']);
     
     Route::get('/getAllCategories/{id?}',[CategoryController::class, 'getAllCategories']);
     Route::post('/addCategory',[CategoryController::class, 'addCategory']);

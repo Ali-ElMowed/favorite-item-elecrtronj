@@ -53,4 +53,15 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // public function favoriteItems(){
+    //     return $this->hasManyThrough(Item::class,Favorite::class,'user_id','id','id','item_id');
+    // }
+
+    public function favorite(){
+        return $this->hasMany(Favorite::class,'user_id');
+    }
+
+
 }
