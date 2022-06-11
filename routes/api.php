@@ -21,22 +21,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'api'], function($router) {
-    Route::post('/register', [JWTController::class, 'register']);
-    Route::post('/login', [JWTController::class, 'login']);
+Route::post('/register', [JWTController::class, 'register'])->name('register');
+Route::post('/login', [JWTController::class, 'login'])->name('login');
+
+Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/logout', [JWTController::class, 'logout']);
     Route::post('/refresh', [JWTController::class, 'refresh']);
     Route::post('/profile', [JWTController::class, 'profile']);
+    
+    Route::get('/getAllItems/{id?}',[ItemController::class, 'getAllItems']);
+    Route::post('/addItem',[ItemController::class, 'addItem']);
+    Route::post('/updateItem/{id}',[ItemController::class, 'updateItem']);
+    Route::post('/deleteItem/{id}',[ItemController::class, 'destroyItem']);
+    
+    
+    Route::get('/getAllCategories/{id?}',[CategoryController::class, 'getAllCategories']);
+    Route::post('/addCategory',[CategoryController::class, 'addCategory']);
+    Route::post('/updateCategory/{id}',[CategoryController::class, 'updateCategory']);
+    Route::post('/deleteCategory/{id}',[CategoryController::class, 'destroyCategory']);
+    Route::get('get-items/{category}',[CategoryController::class, 'getItems']);
 });
-
-
-Route::get('/getAllItems/{id?}',[ItemController::class, 'getAllItems']);
-Route::post('/addItem',[ItemController::class, 'addItem']);
-Route::post('/updateItem/{id}',[ItemController::class, 'updateItem']);
-Route::post('/deleteItem/{id}',[ItemController::class, 'destroyItem']);
-
-
-Route::get('/getAllCategories/{id?}',[CategoryController::class, 'getAllCategories']);
-Route::post('/addCategory',[CategoryController::class, 'addCategory']);
-Route::post('/updateCategory/{id}',[CategoryController::class, 'updateCategory']);
-Route::post('/deleteCategory/{id}',[CategoryController::class, 'destroyCategory']);

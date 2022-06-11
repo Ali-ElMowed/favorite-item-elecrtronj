@@ -70,4 +70,23 @@ class CategoryController extends Controller
             ],200);
         }
     }
+
+    // public function getItems(Category $category){
+    //     return $category->load('items');
+    // }
+
+    public function getItems($id){
+        dd(auth()->user()->name);
+        $category = Category::where('id',$id)->with('items')->first();
+
+        return self::returnResponse('success',200,$category);
+    }
+
+    public function returnResponse($status,$code,$data = null)
+    {
+        return response()->json([
+            'status'=>$status,
+            'data' => $data
+        ],$code);
+    }
 }
