@@ -28,16 +28,20 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/logout', [JWTController::class, 'logout']);
     Route::post('/refresh', [JWTController::class, 'refresh']);
     Route::post('/profile', [JWTController::class, 'profile']);
-    
+
+    Route::group(['middleware' => 'is-admin'], function() {
+        
+        Route::post('/addItem',[ItemController::class, 'addItem']);
+        Route::post('/updateItem/{id}',[ItemController::class, 'updateItem']);
+        Route::post('/deleteItem/{id}',[ItemController::class, 'destroyItem']);
+    });
+
     Route::get('/getAllItems/{id?}',[ItemController::class, 'getAllItems']);
-    Route::post('/addItem',[ItemController::class, 'addItem']);
-    Route::post('/updateItem/{id}',[ItemController::class, 'updateItem']);
-    Route::post('/deleteItem/{id}',[ItemController::class, 'destroyItem']);
-    
     
     Route::get('/getAllCategories/{id?}',[CategoryController::class, 'getAllCategories']);
     Route::post('/addCategory',[CategoryController::class, 'addCategory']);
     Route::post('/updateCategory/{id}',[CategoryController::class, 'updateCategory']);
     Route::post('/deleteCategory/{id}',[CategoryController::class, 'destroyCategory']);
+
     Route::get('get-items/{category}',[CategoryController::class, 'getItems']);
 });
