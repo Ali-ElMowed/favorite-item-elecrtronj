@@ -76,7 +76,7 @@ class CategoryController extends Controller
     // }
 
     public function getItems($id){
-        dd(auth()->user()->name);
+        // dd(auth()->user()->name);
         $category = Category::where('id',$id)->with('items')->first();
 
         return self::returnResponse('success',200,$category);
@@ -86,7 +86,7 @@ class CategoryController extends Controller
     {
         return response()->json([
             'status'=>$status,
-            'data' => $data
+            'data' => $data     
         ],$code);
     }
 }

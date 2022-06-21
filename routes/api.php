@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
 use App\Http\Controllers\UserController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [JWTController::class, 'register'])->name('register');
 Route::post('/login', [JWTController::class, 'login'])->name('login');
 
-Route::group(['middleware' => 'auth:api'], function() {
+Route::group(['middleware' => 'api'], function() {
     Route::post('/logout', [JWTController::class, 'logout']);
     Route::post('/refresh', [JWTController::class, 'refresh']);
     Route::post('/profile', [JWTController::class, 'profile']);
@@ -45,5 +46,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/updateCategory/{id}',[CategoryController::class, 'updateCategory']);
     Route::post('/deleteCategory/{id}',[CategoryController::class, 'destroyCategory']);
 
-    Route::get('get-items/{category}',[CategoryController::class, 'getItems']);
+    
 });
+    Route::get('get-items/{category}',[CategoryController::class, 'getItems']);
